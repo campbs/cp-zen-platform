@@ -72,10 +72,14 @@
       $uibModalInstance.dismiss();
     };
 
+
+//called from .. user interface session-details.dust when a user books a ticket for an event..
     $scope.getApplications = function (sessionApplication) {
       var applications = [];
+      //creates application array.
       _.each(_.keys(sessionApplication.tickets), function (ticketId) {
         _.each(sessionApplication.tickets[ticketId], function (ticket) {
+//each application contains the following
           var application = {
             dojoId: sessionApplication.dojoId,
             eventId: sessionApplication.eventId,
@@ -91,15 +95,23 @@
       });
       return applications;
     };
-
+//called from .. UIsession-details.dust when a user books a ticket for an event..
     $scope.applyForEvent = function (sessionApplication) {
       usSpinnerService.spin('dojo-session-spinner');
       var applications = $scope.getApplications(sessionApplication);
       applications[0].emailSubject = {
         'received': 'Your ticket request for %1$s has been received',
-        'approved': 'Your ticket request for %1$s has been approved'
+        'approved': 'Your ticket request for %1$s has been approved',
+        'pending': 'Your ticket request for %1$s is pending approval'
       };
-      cdEventsService.bulkApplyApplications(applications, function (response) {
+
+    applications[0].dojoEmailSubject = {
+        'approved': 'Your event %1$s has been booked',
+        'pending': 'Your event %1$s has a person who needs approval'
+      };
+
+        cdEventsService.bulkApplyApplications(applications, function (response) {
+        //responces and error handling
         usSpinnerService.stop('dojo-session-spinner');
         $uibModalInstance.close(response);
       }, function (err) {
