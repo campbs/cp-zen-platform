@@ -77,10 +77,12 @@
 
           sessionModalInstance.result.then(function (result) {
             if(result.ok === false) return alertService.showError($translate.instant(result.why));
+            //checks if event approval check box is ticked
             if($scope.event.ticketApproval) {
               alertService.showAlert($translate.instant('Thank You. Your application has been received. You will be notified by email if you are approved for this event.'));
               $state.go('dojo-list');
             } else {
+              //if not then does this
               alertService.showAlert($translate.instant('Thank You. You will receive an email containing your booking confirmation.'));
               $state.go('dojo-list');
             }
