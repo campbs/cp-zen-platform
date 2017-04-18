@@ -106,7 +106,7 @@
       };
 
     applications[0].dojoEmailSubject = {
-        'approved': 'Your event %1$s has been booked',
+        'approved': 'Your event %1$s has a person who needs approval',
         'pending': 'Your event %1$s has a person who needs approval'
       };
 
