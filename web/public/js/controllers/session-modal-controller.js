@@ -72,14 +72,10 @@
       $uibModalInstance.dismiss();
     };
 
-
-//called from .. user interface session-details.dust when a user books a ticket for an event..
     $scope.getApplications = function (sessionApplication) {
       var applications = [];
-      //creates application array.
       _.each(_.keys(sessionApplication.tickets), function (ticketId) {
         _.each(sessionApplication.tickets[ticketId], function (ticket) {
-//each application contains the following
           var application = {
             dojoId: sessionApplication.dojoId,
             eventId: sessionApplication.eventId,
@@ -95,23 +91,26 @@
       });
       return applications;
     };
-//called from .. UIsession-details.dust when a user books a ticket for an event..
+
     $scope.applyForEvent = function (sessionApplication) {
       usSpinnerService.spin('dojo-session-spinner');
       var applications = $scope.getApplications(sessionApplication);
+      //set possible email subjects based on application status
       applications[0].emailSubject = {
         'received': 'Your ticket request for %1$s has been received',
         'approved': 'Your ticket request for %1$s has been approved',
         'pending': 'Your ticket request for %1$s is pending approval'
       };
-
-    applications[0].dojoEmailSubject = {
-        'approved': 'Your event %1$s has a person who needs approval',
-        'pending': 'Your event %1$s has a person who needs approval'
+      applications[0].dojoEmailSubject = {
+        'approved': 'A ticket has been booked for %1$s',
+        'pending': 'A ticket request has been made for %1$s'
       };
-
-        cdEventsService.bulkApplyApplications(applications, function (response) {
-        //responces and error handling
+      applications[0].parentEmailSubject = {
+        'approved': 'A ticket has been booked for your child for %1$s',
+        'pending': 'Your childs ticket request for %1$s is pending approval'
+      };
+      //bulkApplyApplications handles the creation of payloads for the email(s) and sends them
+      cdEventsService.bulkApplyApplications(applications, function (response) {
         usSpinnerService.stop('dojo-session-spinner');
         $uibModalInstance.close(response);
       }, function (err) {
