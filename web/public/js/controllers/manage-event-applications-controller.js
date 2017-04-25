@@ -399,7 +399,10 @@
       application.emailSubject = {
         'received': 'Your ticket request for %1$s has been received',
         'approved': 'Your ticket request for %1$s has been approved',
-        'cancelled': 'Your ticket request for %1$s has been cancelled'
+        'cancelled': 'Your ticket request for %1$s has been cancelled',
+        'dojo-booked-approval': 'Your dojo has been booked please approve',
+        'dojo-booked': 'Your dojo has been booked'
+
       };
       application.parentEmailSubject = {
         'approved': 'A ticket has been booked for your child for %1$s',
