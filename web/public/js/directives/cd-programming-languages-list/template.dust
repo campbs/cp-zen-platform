@@ -3,5 +3,5 @@
   <!--<div class="col-sm-2" ng-repeat="language in programmingLanguagesImageUrl">
       <img src="{{ language.image }}" class="img-thumbnail col-sm1" alt="{{ language.text }}"/>
   </div>-->
-  <cd-picture-grid items="$ctrl.programmingLanguages"></cd-picture-grid>
+  <cd-picture-grid size = "small" items="$ctrl.programmingLanguages"></cd-picture-grid>
 </div>

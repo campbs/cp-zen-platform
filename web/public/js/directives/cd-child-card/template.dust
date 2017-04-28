@@ -64,7 +64,7 @@
                 <h4>{{ 'MEMBER_OF' | translateFromKey }}</h4>
                 <p>{{ 'REMOVE_CHILD_FROM_DOJO_TEXT' | translateFromKey:{name: $ctrl.child.firstName || $ctrl.child.name} }}</p>
               </div>
-              <cd-picture-grid ng-show="$ctrl.child.dojoListings.length > 0" items="$ctrl.child.dojoListings" on-selection="$ctrl.manageDojos ? $ctrl.removeFromDojo : $ctrl.noop" item-icon="minus" item-icon-color="red" show-item-icons="$ctrl.manageDojos" align="left" size="medium"></cd-picture-grid>
+              <cd-picture-grid ng-show="$ctrl.child.dojoListings.length > 0" items="$ctrl.child.dojoListings" on-selection="$ctrl.manageDojos ? $ctrl.removeFromDojo : $ctrl.noop" item-icon="minus" item-icon-color="red" show-item-icons="$ctrl.manageDojos" align="left" size="small"></cd-picture-grid>
             </div>
             <div class="col-xs-12 col-md-6" ng-show="$ctrl.manageDojos">
               <h4>{{ 'AVAILABLE_DOJOS' | translateFromKey }}</h4>

@@ -186,11 +186,12 @@ function cdUserProfileCtrl($scope, $rootScope, $state, $window, auth, cdUsersSer
 
   $scope.loggedInUser = loggedInUser.data;
 
-  $scope.loadProgrammmingLanguagesTags = function (query) {
+  $scope.loadProgrammmingLanguagesTags = function (queryIn) {
+    var query = queryIn.toUpperCase();
     return cdProgrammingLanguagesService.get()
     .then(function (languages) {
       return _.filter(languages.data, function (lang) {
-        return lang.text.indexOf(query) > -1;
+        return lang.text.toUpperCase().indexOf(query) > -1;
       })
     });
   };
